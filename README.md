@@ -33,4 +33,4 @@ The Smart Plant Growing System aims to optimize plant care by using advanced tec
 
 All rights reserved.
 
-This repository contains proprietary code and confidential information. Unauthorized copying, distribution, modification, or use of this code is strictly prohibited.
+This repository contains proprietary code and confidential information. Unauthorized copying, distribution, modification, or use of this code is strictly prohibited. If you wish to use, modify, or distribute this code, you must obtain explicit approval from the repository owner.
