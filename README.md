@@ -18,7 +18,7 @@ The Smart Plant Growing System aims to optimize plant care by using advanced tec
 ## Media
 
 ### Smart Plant Growing System Review Video
-[![IMAGE VIDEO](https://img.youtube.com/vi/PM4hPc6OivM/0.jpg)](https://www.youtube.com/watch?v=PM4hPc6OivM)
+[![IMAGE VIDEO](https://img.youtube.com/vi/JNqIdJ5Ejqk/0.jpg)](https://www.youtube.com/watch?v=JNqIdJ5Ejqk)
 
 ### Electronics Component Diagram
 ![image](https://github.com/deivunis/smart-plant-growing-system/assets/75115877/0ffe7b0c-bf78-47f0-bbf0-3d9c98db6687)
