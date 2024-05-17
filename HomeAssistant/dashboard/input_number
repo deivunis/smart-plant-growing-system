@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "input_number",
+  "data": {
+    "items": [
+      {
+        "id": "esp32_miego_trukme",
+        "min": 0.0,
+        "max": 2678400.0,
+        "mode": "box",
+        "icon": "mdi:timer-outline",
+        "unit_of_measurement": "seconds",
+        "name": "ESP32 miego trukmė",
+        "step": 1.0
+      },
+      {
+        "id": "minimali_dirvozemio_dregme",
+        "min": 0.0,
+        "max": 100.0,
+        "name": "Minimali dirvožemio drėgmė",
+        "icon": "mdi:water",
+        "mode": "box",
+        "unit_of_measurement": "%",
+        "step": 1.0
+      },
+      {
+        "id": "maksimali_dirvozemio_dregme",
+        "min": 0.0,
+        "max": 100.0,
+        "name": "Maksimali dirvožemio drėgmė",
+        "icon": "mdi:water",
+        "unit_of_measurement": "%",
+        "step": 1.0,
+        "mode": "box"
+      },
+      {
+        "id": "minimalus_apsvietimas",
+        "min": 0.0,
+        "max": 65535.0,
+        "name": "Minimalus apšvietimas",
+        "icon": "mdi:brightness-6",
+        "unit_of_measurement": "lux",
+        "mode": "box",
+        "step": 1.0
+      },
+      {
+        "id": "maksimalus_apsvietimas",
+        "min": 0.0,
+        "max": 100000.0,
+        "name": "Maksimalus apšvietimas",
+        "icon": "mdi:brightness-6",
+        "mode": "box",
+        "unit_of_measurement": "lux",
+        "step": 1.0
+      },
+      {
+        "id": "maksimalus_vandens_tds",
+        "min": 0.0,
+        "max": 9999.0,
+        "name": "Maksimalus TDS vandenyje kiekis",
+        "icon": "mdi:water",
+        "mode": "box",
+        "unit_of_measurement": "ppm",
+        "step": 1.0
+      },
+      {
+        "id": "minimalus_augalo_apsvietimo_valandu_skaicius",
+        "min": 0.0,
+        "max": 24.0,
+        "name": "Minimalus augalo apšvietimo valandų skaičius",
+        "icon": "mdi:timer-sand",
+        "mode": "box",
+        "unit_of_measurement": "h",
+        "step": 1.0
+      },
+      {
+        "id": "minimali_temperatura",
+        "min": -40.0,
+        "max": 80.0,
+        "name": "Minimali temperatūra",
+        "icon": "mdi:thermometer",
+        "mode": "box",
+        "unit_of_measurement": "°C",
+        "step": 1.0
+      },
+      {
+        "id": "maksimali_temperatura",
+        "min": -40.0,
+        "max": 80.0,
+        "name": "Maksimali temperatūra",
+        "icon": "mdi:thermometer",
+        "unit_of_measurement": "°C",
+        "step": 1.0,
+        "mode": "box"
+      },
+      {
+        "id": "minimali_oro_dregme",
+        "min": 0.0,
+        "max": 100.0,
+        "name": "Minimali oro drėgmė",
+        "icon": "mdi:water-percent",
+        "mode": "box",
+        "unit_of_measurement": "%",
+        "step": 1.0
+      },
+      {
+        "id": "maksimali_oro_dregme",
+        "min": 0.0,
+        "max": 100.0,
+        "name": "Maksimali oro drėgmė",
+        "icon": "mdi:water-percent",
+        "mode": "box",
+        "unit_of_measurement": "%",
+        "step": 1.0
+      },
+      {
+        "id": "minimalus_co2_lygis",
+        "min": 0.0,
+        "max": 100000.0,
+        "name": "Minimalus CO2 lygis",
+        "icon": "mdi:molecule-co2",
+        "mode": "box",
+        "unit_of_measurement": "ppm",
+        "step": 1.0
+      },
+      {
+        "id": "maksimalus_co2_lygis",
+        "min": 0.0,
+        "max": 100000.0,
+        "name": "Maksimalus CO2 lygis",
+        "icon": "mdi:molecule-co2",
+        "mode": "box",
+        "unit_of_measurement": "ppm",
+        "step": 1.0
+      },
+      {
+        "id": "duomenu_atnaujinimo_daznis",
+        "min": 1.0,
+        "max": 4000000.0,
+        "name": "Duomenų atnaujinimo dažnis",
+        "icon": "mdi:clock-time-eight-outline",
+        "unit_of_measurement": "s",
+        "step": 1.0,
+        "mode": "box"
+      }
+    ]
+  }
+}

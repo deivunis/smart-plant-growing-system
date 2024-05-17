@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "minor_version": 2,
+  "key": "input_select",
+  "data": {
+    "items": [
+      {
+        "id": "esp32_miego_rezimas",
+        "name": "ESP32 miego režimas",
+        "icon": "mdi:power-sleep",
+        "options": [
+          "deep",
+          "light",
+          "modem"
+        ]
+      },
+      {
+        "id": "augalo_tipas",
+        "name": "Augalo tipas",
+        "icon": "mdi:spa-outline",
+        "options": [
+          "default",
+          "flowers",
+          "trees_and_shrubs",
+          "succulents_and_cacti",
+          "vegetables_and_fruits",
+          "herbs",
+          "vines_and_climbers",
+          "aquatics",
+          "tropicals",
+          "bulbous"
+        ]
+      }
+    ]
+  }
+}

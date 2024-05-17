@@ -1,0 +1,244 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.ismani_auginimo_sistema",
+  "data": {
+    "config": {
+      "views": [
+        {
+          "title": "Home",
+          "cards": [
+            {
+              "type": "custom:flower-card",
+              "entity": "plant.ias_augalas",
+              "show_bars": [
+                "illuminance",
+                "humidity",
+                "moisture",
+                "conductivity",
+                "temperature",
+                "dli"
+              ],
+              "battery_sensor": "sensor.mqtt_ias_battery_sensor",
+              "display_type": "full"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.mqtt_ias_current_time",
+                  "name": "Dabartinis laikas",
+                  "icon": "mdi:calendar-clock-outline",
+                  "secondary_info": "none"
+                },
+                {
+                  "entity": "sensor.mqtt_ias_sunrise_time",
+                  "name": "Saulėtekis",
+                  "icon": "mdi:weather-sunset-up"
+                },
+                {
+                  "entity": "sensor.mqtt_ias_sunset_time",
+                  "name": "Saulėlydis",
+                  "icon": "mdi:weather-sunset-down"
+                },
+                {
+                  "entity": "sensor.mqtt_ias_plant_light_time",
+                  "name": "Minimalaus apšvietimo valandų skaičius",
+                  "icon": "mdi:timer-sand"
+                },
+                {
+                  "entity": "sensor.mqtt_ias_plant_condition",
+                  "name": "Augalo būklė",
+                  "icon": "mdi:medication-outline"
+                },
+                {
+                  "entity": "input_number.duomenu_atnaujinimo_daznis",
+                  "name": "Duomenų atnaujinimo dažnis",
+                  "icon": "mdi:clock-time-eight-outline"
+                },
+                {
+                  "entity": "input_select.augalo_tipas",
+                  "name": "Augalo tipas",
+                  "icon": "mdi:spa-outline"
+                },
+                {
+                  "entity": "input_number.minimalus_augalo_apsvietimo_valandu_skaicius",
+                  "name": "Minimalus augalo apšvietimo valandų skaičiu",
+                  "icon": "mdi:sun-clock-outline"
+                },
+                {
+                  "entity": "input_number.minimali_dirvozemio_dregme",
+                  "name": "Minimali dirvožemio drėgmė"
+                },
+                {
+                  "entity": "input_number.maksimali_dirvozemio_dregme",
+                  "name": "Maksimali dirvožemio drėgmė",
+                  "icon": ""
+                },
+                {
+                  "entity": "input_number.minimalus_apsvietimas",
+                  "name": "Minimalus apšvietimas"
+                },
+                {
+                  "entity": "input_number.maksimalus_apsvietimas",
+                  "name": "Maksimalus apšvietimas"
+                },
+                {
+                  "entity": "input_number.maksimalus_vandens_tds",
+                  "name": "Maksimalus vandens TDS"
+                },
+                {
+                  "entity": "input_number.minimali_temperatura"
+                },
+                {
+                  "entity": "input_number.maksimali_temperatura"
+                },
+                {
+                  "entity": "input_number.minimali_oro_dregme"
+                },
+                {
+                  "entity": "input_number.maksimali_oro_dregme"
+                },
+                {
+                  "entity": "input_number.minimalus_co2_lygis"
+                },
+                {
+                  "entity": "input_number.maksimalus_co2_lygis"
+                },
+                {
+                  "entity": "number.ias_augalas_min_dli",
+                  "name": "Minimalus DLI"
+                },
+                {
+                  "entity": "number.ias_augalas_max_dli",
+                  "name": "Maksimalus DLI"
+                }
+              ],
+              "title": "IAS augalo parametrai",
+              "state_color": false
+            },
+            {
+              "square": false,
+              "type": "grid",
+              "cards": [
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "entity": "sensor.mqtt_ias_temperature_sensor",
+                  "detail": 2
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "entity": "sensor.mqtt_ias_humidity_sensor",
+                  "detail": 2
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "entity": "sensor.mqtt_ias_light_sensor",
+                  "detail": 2
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "entity": "sensor.mqtt_ias_moisture_sensor",
+                  "detail": 2,
+                  "unit": "%"
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "entity": "sensor.mqtt_ias_tvoc_sensor",
+                  "detail": 2
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "entity": "sensor.mqtt_ias_eco2_sensor",
+                  "detail": 2
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "entity": "sensor.mqtt_ias_pressure_sensor",
+                  "detail": 2
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "entity": "sensor.mqtt_ias_tds_sensor",
+                  "detail": 2,
+                  "unit": "ppm"
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "entity": "sensor.mqtt_ias_altitude_sensor",
+                  "detail": 2
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "entity": "sensor.mqtt_ias_battery_sensor",
+                  "detail": 2
+                }
+              ],
+              "columns": 2,
+              "title": "IAS jutikliai"
+            },
+            {
+              "type": "tile",
+              "entity": "sensor.mqtt_ias_water_tank_sensor",
+              "show_entity_picture": false,
+              "vertical": true,
+              "hide_state": false,
+              "color": "light-blue",
+              "icon": "mdi:cup-water",
+              "name": "IAS vandens talpyklos būklė"
+            },
+            {
+              "square": true,
+              "type": "grid",
+              "cards": [
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "type": "button",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "entity": "switch.water_pump",
+                  "show_state": true,
+                  "icon": "mdi:water-pump"
+                },
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "type": "button",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "entity": "switch.ias_led",
+                  "show_state": true,
+                  "icon": "mdi:lightbulb"
+                }
+              ],
+              "title": "IAS valdymas",
+              "columns": 2
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "input_select.esp32_miego_rezimas",
+                "input_number.esp32_miego_trukme",
+                "input_button.pradeti"
+              ],
+              "title": "ESP32 miego režimai"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

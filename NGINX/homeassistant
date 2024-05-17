@@ -1,0 +1,72 @@
+server {
+    if ($host = home.dmihome.net) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    server_name home.dmihome.net;
+    return 301 https://$host$request_uri;
+
+}
+
+server {
+    listen 443 ssl http2;
+    server_name home.dmihome.net;
+    ssl_certificate /etc/letsencrypt/live/matrix.dmihome.net/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/matrix.dmihome.net/privkey.pem; # managed by Certbot
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers 'TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384';
+
+    ssl_prefer_server_ciphers off;
+    ssl_dhparam /etc/nginx/ssl/dhparam.pem;
+
+    add_header Strict-Transport-Security "max-age=31536000; includeSubdomains; preload" always;
+ #   add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline';" always;
+    add_header X-Content-Type-Options nosniff;
+#    add_header X-Frame-Options SAMEORIGIN;
+    add_header X-XSS-Protection "1; mode=block";
+
+    location / {
+        proxy_pass http://redactedIP:redactedPORT;
+        #proxy_set_header Host $host;
+        #proxy_set_header X-Real-IP $remote_addr;
+        #proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        #proxy_set_header X-Forwarded-Proto $scheme;
+
+        #proxy_http_version 1.1;
+        #proxy_set_header Upgrade $http_upgrade;
+        #proxy_set_header Connection "upgrade";
+        #proxy_http_version 1.1;
+
+        proxy_set_header Host $host;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    server_tokens off;
+
+    # Prevent clickjacking
+    add_header X-Frame-Options "DENY" always;
+
+    # Block MIME sniffing
+    add_header X-Content-Type-Options "nosniff" always;
+
+    # XSS Protection
+    add_header X-XSS-Protection "1; mode=block" always;
+
+    # Disable unnecessary Nginx modules
+    fastcgi_hide_header X-Powered-By;
+    fastcgi_hide_header X-Accel-Expires;
+    fastcgi_hide_header X-Accel-Redirect;
+
+    access_log /var/log/nginx/homeassistant_access.log;
+    error_log /var/log/nginx/homeassistant_error.log;
+
+
+
+}

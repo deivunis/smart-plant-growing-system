@@ -1,0 +1,250 @@
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 127.0.0.1
+    - 10.10.10.0/24
+
+plant:
+  ias_plant:
+    sensors:
+      moisture: sensor.mqtt_ias_humidity_sensor
+      temperature: sensor.mqtt_ias_temperature_sensor
+      conductivity: sensor.mqtt_ias_eco2_sensor
+      brightness: sensor.mqtt_ias_light_sensor
+      battery: sensor.mqtt_ias_batterylevel_sensor
+      air_humidity: sensor.mqtt_humidity_sensor
+    min_moisture: sensor.mqtt_ias_minmoisture_sensor
+    max_moisture: sensor.mqtt_ias_maxmoisture_sensor
+    min_conductivity: 200
+    max_conductivity: 1001
+    min_temperature: 15
+    max_temperature: 40
+    min_brightness: sensor.mqtt_ias_minlux_sensor
+    max_brightness: sensor.mqtt_ias_maxlux_sensor
+    check_days: 3
+
+mqtt:
+  switch:
+    - unique_id: water_pump_switch
+      name: "Water Pump"
+      state_topic: "module/ias/waterpump/state"
+      command_topic: "module/ias/waterpump"
+      availability_topic: "module/ias/waterpump/availability"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "ONLINE"
+      payload_not_available: "OFFLINE"
+      optimistic: false
+      qos: 0
+      retain: true
+
+    - unique_id: ias_led_switch
+      name: "IAS LED"
+      state_topic: "module/ias/led/state"
+      command_topic: "module/ias/led"
+      availability_topic: "module/ias/led/availability"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "ONLINE"
+      payload_not_available: "OFFLINE"
+      optimistic: false
+      qos: 0
+      retain: true
+
+  sensor:
+   - name: "MQTT IAS TEST"
+     state_topic: "sensor/ias/test"
+     unit_of_measurement: ""
+     device_class: "humidity"
+
+   - name: "MQTT IAS Temperature Sensor"
+     unique_id: "sensor.mqtt_ias_temperature"
+     state_topic: "sensor/ias/temperature"
+     unit_of_measurement: "C"
+     device_class: "temperature"
+
+   - name: "MQTT IAS Humidity Sensor"
+     unique_id: "sensor.mqtt_ias_humidity"
+     state_topic: "sensor/ias/humidity"
+     unit_of_measurement: "%"
+     device_class: "humidity"
+
+   - name: "MQTT IAS TVOC Sensor"
+     unique_id: "sensor.mqtt_ias_tvoc"
+     state_topic: "sensor/ias/tvoc"
+     unit_of_measurement: "ppb"
+     device_class: "aqi"
+
+   - name: "MQTT IAS eCO2 Sensor"
+     unique_id: "sensor.mqtt_ias_eco2"
+     state_topic: "sensor/ias/eco2"
+     unit_of_measurement: "ppm"
+     device_class: "aqi"
+
+   - name: "MQTT IAS Light Sensor"
+     unique_id: "sensor.mqtt_ias_light"
+     state_topic: "sensor/ias/light"
+     unit_of_measurement: "lx"
+     device_class: "illuminance"
+
+   - name: "MQTT IAS Pressure Sensor"
+     unique_id: "sensor.mqtt_ias_pressure"
+     state_topic: "sensor/ias/pressure"
+     unit_of_measurement: "hPa"
+     device_class: "pressure"
+
+   - name: "MQTT IAS Altitude Sensor"
+     unique_id: "sensor.mqtt_ias_altitude"
+     state_topic: "sensor/ias/altitude"
+     unit_of_measurement: "m"
+     device_class: "distance"
+
+   - name: "MQTT IAS Moisture Sensor"
+     unique_id: "sensor.mqtt_ias_moisture"
+     state_topic: "sensor/ias/soilmoisture"
+     unit_of_measurement: "%"
+     device_class: "moisture"
+
+   - name: "MQTT IAS TDS Sensor"
+     unique_id: "sensor.mqtt_ias_tds"
+     state_topic: "sensor/ias/tds"
+     unit_of_measurement: "ppm"
+     device_class: "water"
+
+   - name: "MQTT IAS Water Tank Sensor"
+     unique_id: "sensor.mqtt_ias_water_tank"
+     state_topic: "sensor/ias/watertank"
+     unit_of_measurement: ""
+     device_class: "enum"
+
+   - name: "MQTT IAS Battery Sensor"
+     unique_id: "sensor.mqtt_ias_battery_level"
+     state_topic: "sensor/ias/batterylevel"
+     unit_of_measurement: "%"
+     device_class: "battery"
+
+   - name: "MQTT IAS Min Moisture"
+     unique_id: "sensor.mqtt_ias_min_moisture"
+     state_topic: "info/ias/minmoisture"
+     unit_of_measurement: ""
+     device_class: "humidity"
+
+   - name: "MQTT IAS Max Moisture"
+     unique_id: "sensor.mqtt_ias_max_moisture"
+     state_topic: "info/ias/maxmoisture"
+     unit_of_measurement: ""
+     device_class: "humidity"
+
+   - name: "MQTT IAS Min Illuminance"
+     unique_id: "sensor.mqtt_ias_min_illuminance"
+     state_topic: "info/ias/minlux"
+     unit_of_measurement: ""
+     device_class: "illuminance"
+
+   - name: "MQTT IAS Max Illuminance"
+     unique_id: "sensor.mqtt_ias_max_illuminance"
+     state_topic: "info/ias/maxlux"
+     unit_of_measurement: ""
+     device_class: "illuminance"
+
+   - name: "MQTT IAS Max TDS"
+     unique_id: "sensor.mqtt_ias_max_tds"
+     state_topic: "info/ias/maxtds"
+     unit_of_measurement: ""
+     device_class: "water"
+
+   - name: "MQTT IAS Min Light Hours"
+     unique_id: "sensor.mqtt_ias_min_light_hours"
+     state_topic: "info/ias/minlighthours"
+     unit_of_measurement: ""
+     device_class: "enum"
+
+   - name: "MQTT IAS Min Temp"
+     unique_id: "sensor.mqtt_ias_min_temp"
+     state_topic: "info/ias/mintemp"
+     unit_of_measurement: "C"
+     device_class: "temperature"
+
+   - name: "MQTT IAS Max Temp"
+     unique_id: "sensor.mqtt_ias_max_temp"
+     state_topic: "info/ias/maxtemp"
+     unit_of_measurement: "C"
+     device_class: "temperature"
+
+   - name: "MQTT IAS Min Air Humidity"
+     unique_id: "sensor.mqtt_ias_min_air_humidity"
+     state_topic: "info/ias/minairhum"
+     unit_of_measurement: "%"
+     device_class: "humidity"
+
+   - name: "MQTT IAS Max Air Humidity"
+     unique_id: "sensor.mqtt_ias_max_air_humidity"
+     state_topic: "info/ias/maxairhum"
+     unit_of_measurement: "%"
+     device_class: "humidity"
+
+   - name: "MQTT IAS Min eCO2"
+     unique_id: "sensor.mqtt_ias_min_eco2"
+     state_topic: "info/ias/minco2"
+     unit_of_measurement: "ppm"
+     device_class: "aqi"
+
+   - name: "MQTT IAS Max eCO2"
+     unique_id: "sensor.mqtt_ias_max_eco2"
+     state_topic: "info/ias/maxco2"
+     unit_of_measurement: "ppm"
+     device_class: "aqi"
+
+   - name: "MQTT IAS Plant Type"
+     unique_id: "sensor.mqtt_ias_plant_type"
+     state_topic: "module/ias/planttype"
+     unit_of_measurement: ""
+     device_class: "enum"
+
+   - name: "MQTT IAS Sunrise Time"
+     unique_id: "sensor.mqtt_ias_sunrise_time"
+     state_topic: "info/ias/sunrise"
+     unit_of_measurement: ""
+     device_class: "enum"
+
+   - name: "MQTT IAS Sunset Time"
+     unique_id: "sensor.mqtt_ias_sunset_time"
+     state_topic: "info/ias/sunset"
+     unit_of_measurement: ""
+     device_class: "enum"
+
+   - name: "MQTT IAS Current Time"
+     unique_id: "sensor.mqtt_ias_current_time"
+     state_topic: "info/ias/currenttime"
+     unit_of_measurement: ""
+     device_class: "enum"
+
+   - name: "MQTT IAS Plant Light Time"
+     unique_id: "sensor.mqtt_ias_plant_light_time"
+     state_topic: "info/ias/plantlighttime"
+     unit_of_measurement: ""
+     device_class: "enum"
+
+   - name: "MQTT IAS Plant Condition"
+     unique_id: "sensor.mqtt_ias_plant_condition"
+     state_topic: "info/ias/plantcondition"
+     unit_of_measurement: ""
+     device_class: "enum"
+
+   - name: "MQTT IAS Update Interval"
+     unique_id: "sensor.mqtt_ias_update_interval"
+     state_topic: "info/ias/updateintervalinseconds"
+     unit_of_measurement: ""
+     device_class: "enum"

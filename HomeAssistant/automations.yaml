@@ -1,0 +1,823 @@
+- id: '1712770378225'
+  alias: Change Max Soil Humidity
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.mqtt_ias_max_moisture
+  condition:
+  - condition: template
+    value_template: "{{ trigger.to_state.state | float(0) -\n  states('01f8a260df980a2a049ae6f298c7d66d')
+      | float(0) != 0 }}\n"
+  action:
+  - service: number.set_value
+    data:
+      value: '{{ trigger.to_state.state }}'
+    target:
+      entity_id: 01f8a260df980a2a049ae6f298c7d66d
+  mode: single
+- id: '1713125424863'
+  alias: Change Min Soil Humidity
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.mqtt_ias_min_moisture
+  condition:
+  - condition: template
+    value_template: "{{ trigger.to_state.state | float(0) -\n  states('18a4ddeb121287a8876e3af7ae5fb84d')
+      | float(0) != 0 }}\n"
+  action:
+  - service: number.set_value
+    data:
+      value: '{{ trigger.to_state.state }}'
+    target:
+      entity_id: 18a4ddeb121287a8876e3af7ae5fb84d
+  mode: single
+- id: '1713125792243'
+  alias: Change Max Illuminance
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.mqtt_ias_max_illuminance
+  condition:
+  - condition: template
+    value_template: "{{ trigger.to_state.state | float(0) -\n  states('ff911d156cabf3562a04ca55c2d0d732')
+      | float(0) != 0 }}\n"
+  action:
+  - service: number.set_value
+    data:
+      value: '{{ trigger.to_state.state }}'
+    target:
+      entity_id: ff911d156cabf3562a04ca55c2d0d732
+  mode: single
+- id: '1713126002304'
+  alias: Change Min Illuminance
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.mqtt_ias_min_illuminance
+  condition:
+  - condition: template
+    value_template: "{{ trigger.to_state.state | float(0) -\n  states('b79c6f97847f036fcf7ae0086a2bfc6f')
+      | float(0) != 0 }}\n"
+  action:
+  - service: number.set_value
+    data:
+      value: '{{ trigger.to_state.state }}'
+    target:
+      entity_id: b79c6f97847f036fcf7ae0086a2bfc6f
+  mode: single
+- id: '1713186617503'
+  alias: Put ESP32 to sleep
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_button.pradeti
+  condition: []
+  action:
+  - service: mqtt.publish
+    data:
+      qos: 0
+      retain: false
+      topic: ias/sleep
+      payload: '{{ states(''input_select.esp32_miego_rezimas'') }},{{ states(''input_number.esp32_miego_trukme'')
+        }}'
+  - service: notify.mobile_app_sm_g991b
+    data:
+      title: '[ESP32] Įjungtas miego režimas'
+      message: Įjungtas ESP32 ({{ states("input_select.esp32_miego_rezimas") }}) miego
+        režimas. Mikrovaldiklis miego trukmė - ({{ states("input_number.esp32_miego_trukme")
+        }}) sek.
+      data:
+        color: blue
+        clickAction: /ismani-auginimo-sistema/0
+  mode: single
+- id: '1713289376290'
+  alias: Change Max Temperature
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.mqtt_ias_max_temp
+  condition:
+  - condition: template
+    value_template: "{{ trigger.to_state.state | float(0) -\n  states('a7e67b2f5781bd5a71fd9ed080e48184')
+      | float(0) != 0 }}\n"
+  action:
+  - service: number.set_value
+    data:
+      value: '{{ trigger.to_state.state }}'
+    target:
+      entity_id: a7e67b2f5781bd5a71fd9ed080e48184
+  mode: single
+- id: '1713289453111'
+  alias: Change Min Temperature
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.mqtt_ias_min_temp
+  condition:
+  - condition: template
+    value_template: "{{ trigger.to_state.state | float(0) -\n  states('9acf8c2b0fdd25236fd38600d4907646')
+      | float(0) != 0 }}\n"
+  action:
+  - service: number.set_value
+    data:
+      value: '{{ trigger.to_state.state }}'
+    target:
+      entity_id: 9acf8c2b0fdd25236fd38600d4907646
+  mode: single
+- id: '1713289534548'
+  alias: Change Max Air Humidity
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.mqtt_ias_max_air_humidity
+  condition:
+  - condition: template
+    value_template: "{{ trigger.to_state.state | float(0) -\n  states('1ef282c4088165df1d34a491ee5e035a')
+      | float(0) != 0 }}\n"
+  action:
+  - service: number.set_value
+    data:
+      value: '{{ trigger.to_state.state }}'
+    target:
+      entity_id: 1ef282c4088165df1d34a491ee5e035a
+  mode: single
+- id: '1713289601064'
+  alias: Change Min Air Humidity
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.mqtt_ias_min_air_humidity
+  condition:
+  - condition: template
+    value_template: "{{ trigger.to_state.state | float(0) -\n  states('a7543e36ab6c061d3ecc6edac3c8f3f8')
+      | float(0) != 0 }}\n"
+  action:
+  - service: number.set_value
+    data:
+      value: '{{ trigger.to_state.state }}'
+    target:
+      entity_id: a7543e36ab6c061d3ecc6edac3c8f3f8
+  mode: single
+- id: '1713289747560'
+  alias: Change Max CO2
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.mqtt_ias_max_eco2
+  condition:
+  - condition: template
+    value_template: "{{ trigger.to_state.state | float(0) -\n  states('eea6d258937446d763aa3a4d1babcc82')
+      | float(0) != 0 }}\n"
+  action:
+  - service: number.set_value
+    data:
+      value: '{{ trigger.to_state.state }}'
+    target:
+      entity_id: eea6d258937446d763aa3a4d1babcc82
+  mode: single
+- id: '1713289806386'
+  alias: Change Min CO2
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.mqtt_ias_min_eco2
+  condition:
+  - condition: template
+    value_template: "{{ trigger.to_state.state | float(0) -\n  states('582b88df64712746348b558463e674b3')
+      | float(0) != 0 }}\n"
+  action:
+  - service: number.set_value
+    data:
+      value: '{{ trigger.to_state.state }}'
+    target:
+      entity_id: 582b88df64712746348b558463e674b3
+  mode: single
+- id: '1713290137442'
+  alias: Change Plant Type
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.augalo_tipas
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+  condition: []
+  action:
+  - service: mqtt.publish
+    data:
+      qos: 0
+      retain: true
+      topic: module/ias/planttype
+      payload: '{{ states(''input_select.augalo_tipas'') }}'
+  - service: input_select.select_option
+    target:
+      entity_id: input_select.augalo_tipas
+    data:
+      value: '{{ states(''sensor.mqtt_ias_plant_type'') }}'
+    enabled: false
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.maksimali_dirvozemio_dregme
+    data:
+      value: '{{ states(''sensor.mqtt_ias_max_moisture'') }}'
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.minimalus_augalo_apsvietimo_valandu_skaicius
+    data:
+      value: '{{ states(''sensor.mqtt_ias_min_light_hours'') }}'
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.minimali_dirvozemio_dregme
+    data:
+      value: '{{ states(''sensor.mqtt_ias_min_moisture'') }}'
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.minimalus_apsvietimas
+    data:
+      value: '{{ states(''sensor.mqtt_ias_min_illuminance'') }}'
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.maksimalus_apsvietimas
+    data:
+      value: '{{ states(''sensor.mqtt_ias_max_illuminance'') }}'
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.maksimalus_vandens_tds
+    data:
+      value: '{{ states(''sensor.mqtt_ias_max_tds'') }}'
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.minimali_temperatura
+    data:
+      value: '{{ states(''sensor.mqtt_ias_min_temp'') }}'
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.maksimali_temperatura
+    data:
+      value: '{{ states(''sensor.mqtt_ias_max_temp'') }}'
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.maksimali_oro_dregme
+    data:
+      value: '{{ states(''sensor.mqtt_ias_max_air_humidity'') }}'
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.minimali_oro_dregme
+    data:
+      value: '{{ states(''sensor.mqtt_ias_min_air_humidity'') }}'
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.minimalus_co2_lygis
+    data:
+      value: '{{ states(''sensor.mqtt_ias_min_eco2'') }}'
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.maksimalus_co2_lygis
+    data:
+      value: '{{ states(''sensor.mqtt_ias_max_eco2'') }}'
+  - service: notify.mobile_app_sm_g991b
+    data:
+      title: '[AUGALAS] Atnaujintas tipas'
+      message: Atnaujintas augalo tipas. Nauja reikšmė - ({{ states("input_select.augalo_tipas")
+        }}).
+      data:
+        color: green
+        clickAction: /ismani-auginimo-sistema/0
+  mode: single
+- id: '1713298171027'
+  alias: Update fields
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_number.minimalus_augalo_apsvietimo_valandu_skaicius
+    id: trigger_minimalus_augalo_apsvietimo_valandu_skaicius
+  - platform: state
+    entity_id:
+    - input_number.minimali_dirvozemio_dregme
+    id: trigger_minimali_dirvozemio_dregme
+  - platform: state
+    entity_id:
+    - input_number.maksimali_dirvozemio_dregme
+    id: trigger_maksimali_dirvozemio_dregme
+  - platform: state
+    entity_id:
+    - input_number.minimalus_apsvietimas
+    id: trigger_minimalus_apsvietimas
+  - platform: state
+    entity_id:
+    - input_number.maksimalus_apsvietimas
+    id: trigger_maksimalus_apsvietimas
+  - platform: state
+    entity_id:
+    - input_number.maksimalus_vandens_tds
+    id: trigger_maksimalus_vandens_tds
+  - platform: state
+    entity_id:
+    - input_number.minimali_temperatura
+    id: trigger_minimali_temperatura
+  - platform: state
+    entity_id:
+    - input_number.maksimali_temperatura
+    id: trigger_maksimali_temperatura
+  - platform: state
+    entity_id:
+    - input_number.minimali_oro_dregme
+    id: trigger_minimali_oro_dregme
+  - platform: state
+    entity_id:
+    - input_number.maksimali_oro_dregme
+    id: trigger_maksimali_oro_dregme
+  - platform: state
+    entity_id:
+    - input_number.minimalus_co2_lygis
+    id: trigger_minimalus_co2_lygis
+  - platform: state
+    entity_id:
+    - input_number.maksimalus_co2_lygis
+    id: trigger_maksimalus_co2_lygis
+  - platform: state
+    entity_id:
+    - input_number.duomenu_atnaujinimo_daznis
+    id: trigger_duomenu_atnaujinimo_daznis
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id:
+        - trigger_minimalus_augalo_apsvietimo_valandu_skaicius
+      sequence:
+      - service: mqtt.publish
+        data:
+          qos: 0
+          retain: true
+          topic: info/ias/minlighthours
+          payload: '{{ states(''input_number.minimalus_augalo_apsvietimo_valandu_skaicius'')
+            }}'
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[AUGALAS] Atnaujintas parametras'
+          message: Atnaujintas minimalus augalo apšvietimo valandų skaičius. Nauja
+            reikšmė - ({{ states("input_number.minimalus_augalo_apsvietimo_valandu_skaicius")
+            }}).
+          data:
+            color: green
+            clickAction: /ismani-auginimo-sistema/0
+    - conditions:
+      - condition: trigger
+        id:
+        - trigger_minimalus_apsvietimas
+      sequence:
+      - service: mqtt.publish
+        data:
+          qos: 0
+          retain: true
+          topic: info/ias/minlux
+          payload: '{{ states(''input_number.minimalus_apsvietimas'') }}'
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[AUGALAS] Atnaujintas parametras'
+          message: Atnaujintas minimalaus apšvietimo reikšmė. Nauja reikšmė - ({{
+            states("input_number.minimalus_apsvietimas") }}).
+          data:
+            color: green
+            clickAction: /ismani-auginimo-sistema/0
+    - conditions:
+      - condition: trigger
+        id:
+        - trigger_maksimalus_apsvietimas
+      sequence:
+      - service: mqtt.publish
+        data:
+          qos: 0
+          retain: true
+          topic: info/ias/maxlux
+          payload: '{{ states(''input_number.maksimalus_apsvietimas'') }}'
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[AUGALAS] Atnaujintas parametras'
+          message: Atnaujintas maksimalaus apšvietimo reikšmė. Nauja reikšmė - ({{
+            states("input_number.maksimalus_apsvietimas") }}).
+          data:
+            color: green
+            clickAction: /ismani-auginimo-sistema/0
+    - conditions:
+      - condition: trigger
+        id:
+        - trigger_minimali_dirvozemio_dregme
+      sequence:
+      - service: mqtt.publish
+        data:
+          qos: 0
+          retain: true
+          topic: info/ias/minmoisture
+          payload: '{{ states(''input_number.minimali_dirvozemio_dregme'') }}'
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[AUGALAS] Atnaujintas parametras'
+          message: Atnaujinta minimali dirvožemio drėgmė. Nauja reikšmė - ({{ states("input_number.minimali_dirvozemio_dregme")
+            }}).
+          data:
+            color: green
+            clickAction: /ismani-auginimo-sistema/0
+    - conditions:
+      - condition: trigger
+        id:
+        - trigger_maksimali_dirvozemio_dregme
+      sequence:
+      - service: mqtt.publish
+        data:
+          qos: 0
+          retain: true
+          topic: info/ias/maxmoisture
+          payload: '{{ states(''input_number.maksimali_dirvozemio_dregme'') }}'
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[AUGALAS] Atnaujintas parametras'
+          message: Atnaujinta maksimali dirvožemio drėgmė. Nauja reikšmė - ({{ states("input_number.maksimali_dirvozemio_dregme")
+            }}).
+          data:
+            color: green
+            clickAction: /ismani-auginimo-sistema/0
+    - conditions:
+      - condition: trigger
+        id:
+        - trigger_maksimalus_vandens_tds
+      sequence:
+      - service: mqtt.publish
+        data:
+          qos: 0
+          retain: true
+          topic: info/ias/maxtds
+          payload: '{{ states(''input_number.maksimalus_vandens_tds'') }}'
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[AUGALAS] Atnaujintas parametras'
+          message: Atnaujintas maksimalus vandens TDS kiekis. Nauja reikšmė - ({{
+            states("input_number.maksimalus_vandens_tds") }}).
+          data:
+            color: green
+            clickAction: /ismani-auginimo-sistema/0
+    - conditions:
+      - condition: trigger
+        id:
+        - trigger_minimali_temperatura
+      sequence:
+      - service: mqtt.publish
+        data:
+          qos: 0
+          retain: true
+          topic: info/ias/mintemp
+          payload: '{{ states(''input_number.minimali_temperatura'') }}'
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[AUGALAS] Atnaujintas parametras'
+          message: Atnaujinta minimali temperatūra. Nauja reikšmė - ({{ states("input_number.minimali_temperatura")
+            }}).
+          data:
+            color: green
+            clickAction: /ismani-auginimo-sistema/0
+    - conditions:
+      - condition: trigger
+        id:
+        - trigger_maksimali_temperatura
+      sequence:
+      - service: mqtt.publish
+        data:
+          qos: 0
+          retain: true
+          topic: info/ias/maxtemp
+          payload: '{{ states(''input_number.maksimali_temperatura'') }}'
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[AUGALAS] Atnaujintas parametras'
+          message: Atnaujinta maksimali temperatūra. Nauja reikšmė - ({{ states("input_number.maksimali_temperatura")
+            }}).
+          data:
+            color: green
+            clickAction: /ismani-auginimo-sistema/0
+    - conditions:
+      - condition: trigger
+        id:
+        - trigger_minimali_oro_dregme
+      sequence:
+      - service: mqtt.publish
+        data:
+          qos: 0
+          retain: true
+          topic: info/ias/minairhum
+          payload: '{{ states(''input_number.minimali_oro_dregme'') }}'
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[AUGALAS] Atnaujintas parametras'
+          message: Atnaujinta minimali oro drėgmė. Nauja reikšmė - ({{ states("input_number.minimali_oro_dregme")
+            }}).
+          data:
+            color: green
+            clickAction: /ismani-auginimo-sistema/0
+    - conditions:
+      - condition: trigger
+        id:
+        - trigger_maksimali_oro_dregme
+      sequence:
+      - service: mqtt.publish
+        data:
+          qos: 0
+          retain: true
+          topic: info/ias/minairhum
+          payload: '{{ states(''input_number.maksimali_oro_dregme'') }}'
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[AUGALAS] Atnaujintas parametras'
+          message: Atnaujinta maksimali oro drėgmė. Nauja reikšmė - ({{ states("input_number.maksimali_oro_dregme")
+            }}).
+          data:
+            color: green
+            clickAction: /ismani-auginimo-sistema/0
+    - conditions:
+      - condition: trigger
+        id:
+        - trigger_minimalus_co2_lygis
+      sequence:
+      - service: mqtt.publish
+        data:
+          qos: 0
+          retain: true
+          topic: info/ias/minco2
+          payload: '{{ states(''input_number.minimalus_co2_lygis'') }}'
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[AUGALAS] Atnaujintas parametras'
+          message: Atnaujinta minimalus CO2 lygis. Nauja reikšmė - ({{ states("input_number.minimalus_co2_lygis")
+            }}).
+          data:
+            color: green
+            clickAction: /ismani-auginimo-sistema/0
+    - conditions:
+      - condition: trigger
+        id:
+        - trigger_maksimalus_co2_lygis
+      sequence:
+      - service: mqtt.publish
+        data:
+          qos: 0
+          retain: true
+          topic: info/ias/maxco2
+          payload: '{{ states(''input_number.maksimalus_co2_lygis'') }}'
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[AUGALAS] Atnaujintas parametras'
+          message: Atnaujinta maksimalus CO2 lygis. Nauja reikšmė - ({{ states("input_number.maksimalus_co2_lygis")
+            }}).
+          data:
+            color: green
+            clickAction: /ismani-auginimo-sistema/0
+    - conditions:
+      - condition: trigger
+        id:
+        - trigger_duomenu_atnaujinimo_daznis
+      sequence:
+      - service: mqtt.publish
+        data:
+          qos: 0
+          retain: true
+          topic: info/ias/updateintervalinseconds
+          payload: '{{ states(''input_number.duomenu_atnaujinimo_daznis'') }}'
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[AUGALAS] Atnaujintas parametras'
+          message: Atnaujinta maksimalus CO2 lygis. Nauja reikšmė - ({{ states("input_number.maksimalus_co2_lygis")
+            }}).
+          data:
+            color: green
+            clickAction: /ismani-auginimo-sistema/0
+  mode: single
+- id: '1713359220766'
+  alias: Sync LED light wiz-smarthings-homeassistant-esp32
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - switch.ias_led
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: switch.ias_led
+        state: 'off'
+      sequence:
+      - service: light.turn_off
+        metadata: {}
+        data: {}
+        target:
+          device_id: a308120bd85275a810b9cf6ea0f3425f
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[AUGALAS] Išjungtas apšvietimas'
+          message: Išjungtas augalo apšvietimas. LED būsena - ({{ states("switch.ias_led")
+            }}).
+          data:
+            color: green
+            clickAction: /ismani-auginimo-sistema/0
+    - conditions:
+      - condition: state
+        entity_id: switch.ias_led
+        state: 'on'
+      sequence:
+      - service: light.turn_on
+        metadata: {}
+        data: {}
+        target:
+          device_id: a308120bd85275a810b9cf6ea0f3425f
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[AUGALAS] Įjungtas apšvietimas'
+          message: Įjungtas augalo apšvietimas. LED būsena - ({{ states("switch.ias_led")
+            }}).
+          data:
+            color: green
+            clickAction: /ismani-auginimo-sistema/0
+  mode: single
+- id: '1713550397834'
+  alias: Plant health notification
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.mqtt_ias_plant_condition
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: sensor.mqtt_ias_plant_condition
+        state: healthy
+      sequence:
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[INFO] Augalo būklė'
+          message: Augalas yra sveikas ir neturi potencialių ligų.
+          data:
+            color: green
+            clickAction: /ismani-auginimo-sistema/0
+    - conditions:
+      - condition: state
+        entity_id: sensor.mqtt_ias_plant_condition
+        state: unhealthy
+      sequence:
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[PAVOJUS] Augalo būklė'
+          message: Augalas yra pavojuje! Aptikta potenciali liga!
+          data:
+            color: red
+            clickAction: /ismani-auginimo-sistema/0
+  mode: single
+- id: '1713554047403'
+  alias: Water pump
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - switch.water_pump
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: switch.water_pump
+        state: 'off'
+      sequence:
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[AUGALAS] Išjungta vandens pompa'
+          message: Išjungta augalo vandens pompa. Vandens pompos būsena - ({{ states("switch.water_pump")
+            }}).
+          data:
+            color: green
+            clickAction: /ismani-auginimo-sistema/0
+    - conditions:
+      - condition: state
+        entity_id: switch.water_pump
+        state: 'on'
+      sequence:
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[AUGALAS] Įjungta vandens pompa'
+          message: Įjungta augalo vandens pompa. Vandens pompos būsena - ({{ states("switch.water_pump")
+            }}).
+          data:
+            color: green
+            clickAction: /ismani-auginimo-sistema/0
+  mode: single
+- id: '1713555204792'
+  alias: Water tank sensor
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.mqtt_ias_water_tank_sensor
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: sensor.mqtt_ias_water_tank_sensor
+        state: EMPTY
+      sequence:
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[AUGALAS] Tuščia vandens talpykla'
+          message: Tuščia vandens talpykla, prašome pripildyti vandens. Vandens talpyklos
+            reikšmė - ({{ states("sensor.mqtt_ias_water_tank_sensor") }}).
+          data:
+            color: red
+            clickAction: /ismani-auginimo-sistema/0
+    - conditions:
+      - condition: state
+        entity_id: sensor.mqtt_ias_water_tank_sensor
+        state: FULL
+      sequence:
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[AUGALAS] Pilna vandens talpykla'
+          message: Pilna vandens talpykla. Vandens talpyklos reikšmė - ({{ states("sensor.mqtt_ias_water_tank_sensor")
+            }}).
+          data:
+            color: green
+            clickAction: /ismani-auginimo-sistema/0
+  mode: single
+- id: '1713555683385'
+  alias: Battery level
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id:
+    - sensor.mqtt_ias_battery_sensor
+    below: 15
+    id: ias_low_battery_level
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  - platform: numeric_state
+    entity_id:
+    - sensor.mqtt_ias_battery_sensor
+    above: 99
+    id: ias_high_battery_level
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id:
+        - ias_low_battery_level
+      sequence:
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[AUGALAS] žemas baterijos lygis'
+          message: Išmanios auginimo sistemos akumuliatorius baigia išsikrauti, prašome
+            įjungti pakrauti. Baterijos lygis - ({{ states("sensor.mqtt_ias_battery_sensor")
+            }}).
+          data:
+            color: red
+            clickAction: /ismani-auginimo-sistema/0
+    - conditions:
+      - condition: trigger
+        id:
+        - ias_high_battery_level
+      sequence:
+      - service: notify.mobile_app_sm_g991b
+        data:
+          title: '[AUGALAS] baterija pakrauta'
+          message: Pakrautas išmanios auginimo sistemos akumuliatorius, prašome atjungti
+            iš pakrovimo lizdo. Baterijos lygis - ({{ states("sensor.mqtt_ias_battery_sensor")}}).
+          data:
+            color: green
+            clickAction: /ismani-auginimo-sistema/0
+  mode: single
