@@ -23,15 +23,14 @@ The Smart Plant Growing System aims to optimize plant care by using advanced tec
 ### Electronics Component Diagram
 ![image](https://github.com/deivunis/smart-plant-growing-system/assets/75115877/0ffe7b0c-bf78-47f0-bbf0-3d9c98db6687)
 
-# License
-
-All rights reserved.
-
-This repository contains proprietary code and confidential information. Unauthorized copying, distribution, modification, or use of this code is strictly prohibited.
-
-
 ### Physical Electronics Photo
 ![image](https://github.com/deivunis/smart-plant-growing-system/assets/75115877/68907d28-581a-47f8-82f5-739329d25870)
 
 ### Home Assistant Management Photo
 ![image](https://github.com/deivunis/smart-plant-growing-system/assets/75115877/de6bafe1-85ff-4b4a-b2c5-1009329c8f68)
+
+# License
+
+All rights reserved.
+
+This repository contains proprietary code and confidential information. Unauthorized copying, distribution, modification, or use of this code is strictly prohibited.
